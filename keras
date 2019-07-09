@@ -1,0 +1,78 @@
+
+
+conv-bath-relu
+
+a)  sess = K.get_session()
+
+
+
+1) Padding : ZeroPadding2D((3, 3))(X_input)
+
+-->> pad height with 3 and pad width with 3 both side 
+
+2) Convolution  :  
+
+ X = Conv2D(filters = F1, kernel_size = (1, 1), strides = (1,1), padding = 'valid', name = conv_name_base + '2a', kernel_initializer = glorot_uniform(seed=0))(X)
+
+
+
+3) Batch normalization : 
+
+BatchNormalization(axis = 3, name = bn_name_base + '2b')(X)
+
+
+
+4) Activation :
+
+X = Activation('relu')(X)
+
+
+
+5)Pooling : X =   MaxPooling2D(pool_size/filter_size=(2, 2), strides=None, padding='valid')(X)
+
+
+6) Conv block
+
+
+
+7) Identity block
+
+
+8) Average pool :  X = AveragePooling2D(pool_size=(2, 2), strides=None, padding='valid', data_format=None)(X)
+
+
+
+9) Flatten :  X = Flatten()(X)
+
+
+10) Dense(Fully connected layer) :X =  Dense(classes, activation='softmax', name='fc' + str(classes), kernel_initializer = glorot_uniform(seed=0))(X)
+ 
+ ---> The Fully Connected (Dense) layer reduces its input to the number of classes using a softmax activation.
+
+
+
+11)  X = Add()([X , X_shortcut])
+
+
+
+12) model =  Model(inputs = X_input, outputs = X, name='ResNet50')
+
+
+
+13) model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
+
+
+14) model.fit(X_train, Y_train, epochs = 2, batch_size = 32)
+
+
+
+15) model.evaluate(X_test, Y_test)
+
+
+16) model.predict(new_input_image_that_is not_in _train_or_test)
+
+
+17) print summary of your model -->> model.summary()
+
+
