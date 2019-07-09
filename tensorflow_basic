@@ -1,0 +1,248 @@
+Tensorflow Basic
+
+
+
+1. Steps to calculate :(FOR NEURAL NETWORK) 
+
+
+
+a) create placeholder for X and Y    :  X  =  tf.placeholder( dtype = tf.float32,shape = [None,n_H0,n_W0,n_C0] )
+
+
+
+
+b) initialize random weight and bias    :    W1  =  tf.get_variable( 'W1'  ,[4,4,3,8],initializer = tf.contrib.layers.xavier_initializer(seed = 0) ) 
+
+
+
+
+
+
+c) forward propagation :  using tf.matmul and tf.add and tf.nn.relu 
+
+
+
+
+d) compute cost function using :
+
+tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits = logits , labels = labels ))
+
+-->> It is important to know that the "logits" and "labels" inputs of tf.nn.softmax_cross_entropy_with_logits are expected to be of shape (number of examples, num_classes). We have thus transposed Z3 and Y for you
+
+-->> logits = tf.transpose(Z3)
+    labels = tf.transpose(Y)
+
+
+
+
+
+
+
+e) After you compute the cost function. You will create an "optimizer" object.
+
+-->> optimizer = tf.train.GradientDescentOptimizer(learning_rate = learning_rate).minimize(cost)
+
+
+The backpropagation and optimization is automatically done when running the session on the "optimizer" object.
+
+
+
+
+
+
+f) _ , c = sess.run([optimizer, cost], feed_dict={X: minibatch_X, Y: minibatch_Y})
+
+
+----<>>>  Note When coding, we often use _ as a "throwaway" variable to store values that we won't need to use later. Here, _ takes on the evaluated value of optimizer, which we don't need (and c takes the value of the cost variable).
+
+
+
+
+
+
+G) then create model function and call all above function thrugh it.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2)   1. Steps to calculate :(FOR CONVOLUTION NEURAL NETWORK) 
+  
+
+
+a) create placeholder for X and Y    :  X  =  tf.placeholder( dtype = tf.float32,shape = [None,n_H0,n_W0,n_C0] )
+
+
+
+
+b) initialize random weight and bias    :    W1  =  tf.get_variable( 'W1'  ,[4,4,3,8],initializer = tf.contrib.layers.xavier_initializer(seed = 0) ) 
+
+
+
+C) forward propagation : 
+ 
+
+          CONVOLUTION =  tf.nn.conv2d(X,W1, strides = [1,s,s,1], padding = 'SAME')
+
+          POOLING = tf.nn.max_pool(A, ksize = [1,f,f,1], strides = [1,s,s,1], padding = 'SAME')
+
+          RELU = tf.nn.relu(Z1)
+
+
+          Flatten = tf.contrib.layers.flatten(P)
+
+
+          FC = tf.contrib.layers.fully_connected(F, num_outputs,activation_fn)
+
+
+
+
+
+
+d) Compute cost :    cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits = logits , labels = labels ))
+ 
+
+				tf.nn.softmax_cross_entropy_with_logits(logits = ZL, labels = Y)
+
+
+				tf.reduce_mean
+
+
+
+
+
+
+e) Optimize  cost :  tf.train.AdamOptimizer().minimize(cost)
+
+
+
+
+
+1) Finally, when you run the session, you are telling TensorFlow to execute the computation graph.
+
+2) placeholder ---<>>    pass in a number later when we run the session.
+						A placeholder is an object whose value you can specify only later
+
+
+
+eg > x = tf.placeholder(tf.int64 , name = 'x')
+print(sess.run(2 * x, feed_dict = {x: 3}))
+sess.close()
+
+
+3) tf.matmul(..., ...)
+
+4) tf.add(..., ...) 
+
+5) tf.constant(np.random.randn(size_of_matrix) )
+
+6) sess = tf.Session()
+
+7) tf.exp()
+
+8) tf.sigmoid()
+
+9) tf.softmax()
+
+10) tf.nn.sigmoid_cross_entropy_with_logits(logits = fianal_sigmoid_value ,  labels = y)  ////  computes cost function
+
+11) tf.one_hot(labels, depth, axis)  // where depth = no. of class
+
+12) c = tf.constant(2)
+
+13) tf.ones(shape = (2,1))      ////// 2 row with one column vector
+
+14) tf.zeros(shape = (2,1))
+
+
+15) random weight initializer : 
+
+	W1 = tf.get_variable("W1", [25,12288], initializer = tf.contrib.layers.xavier_initializer(seed = 1))
+
+
+
+16) 
+
+
+17) tf.reduce_mean()
+
+18) tf.transpose()
+
+-----------------------------
+
+
+box_confidence =  (19, 19, 5, 1)
+
+box_class_probs = (19, 19, 5, 80) 
+
+
+19) tf.multiply(box_confidence , box_class_probs)   
+
+
+
+
+20) tf.keras.backend.argmax(box_scores,axis = -1)         ///////////     Returns the index of the maximum value along an axis.
+
+
+
+b)     K.max(box_scores,axis = -1)    
+
+
+
+a)  axis = 0    =>      19      =>   axis = -4
+
+b)  axis = 1    =>      19      =>   axis = -3
+
+c)  axis = 2    =>      5       =>   axis = -2
+
+d)  axis = 3    =>      80       =>   axis = -1
+
+
+
+
+
+
+
+
+21) creating mask :   filtering_mask = tf.greater( box_class_scores,threshold )
+
+
+22) Filtering using mask : tf.boolean_mask( box_class_scores,filtering_mask  )
+
+
+
+
+23)  nms_indices = tf.image.non_max_suppression(boxes,scores,max_boxes_tensor,iou_threshold)
+
+
+
+24)    scores = K.gather(scores,nms_indices)
+	    boxes = K.gather(boxes,nms_indices)
+	    classes = K.gather(classes,nms_indices)
+
+where K = tf.keras.backend
+
+
+
+
+
+25) yolo_boxes_to_corners
+
+26) scale_boxes(boxes, image_shape)
+
+
