@@ -1,0 +1,218 @@
+import numpy as np
+from PIL import Image
+
+# Open the input image
+PILimage=Image.open("classified.png")
+
+# Use numpy to convert the PIL image into a numpy array
+npImage=np.array(PILimage)
+
+# Make a LUT (Look-Up Table) to translate image values. Default output value is zero.
+LUT=np.zeros(256,dtype=np.uint8)
+LUT[29]=1    # all pixels with value 29, will become 1
+LUT[179]=2   # all pixels with value 179, will become 2
+
+# Transform pixels according to LUT - this line does all the work
+pixels=LUT[npImage];
+
+# Save resulting image
+result=Image.fromarray(pixels)
+result.save('result.png')
+
+
+
+
+
+-------------------------------------------------------------------------------
+
+pillow
+
+Attributes :
+PIL.Image.filename
+PIL.Image.size/height/width/format/mode/info
+
+
+
+
+
+
+Methods: 
+
+
+im = Image.open("bride.jpg")
+im.rotate(45).show()
+Image.thumbnail(size, resample=3)
+
+
+
+
+
+Image.split()  :: splitting an “RGB” image creates three new images each containing a copy of one of the original bands (red, green, blue).
+f you need only one band, getchannel() metho
+
+
+
+Image.getchannel(channel) :: 
+
+
+Image.show(title=None, command=None)
+
+Image.save(fp, format=None, **params)
+
+
+Image.rotate(angle, resample=0, expand=0, center=None, translate=None, fillcolor=None)
+
+
+Image.resize(size, resample=0, box=None)
+
+
+Image.paste(im, box=None, mask=None)
+
+Image.copy()
+
+Image.convert(mode=None, matrix=None, dither=None, palette=0, colors=256)
+mode – The requested mode
+
+
+PIL.Image.fromarray(obj, mode=None)
+
+
+Converting image into array :
+im = Image.open('hopper.jpg')
+a = np.asarray(im)
+
+
+Creating image from array:
+im = Image.fromarray(a)
+
+
+PIL.Image.new(mode, size, color=0) // default color is black
+
+
+					
+
+
+
+
+
+
+
+
+					          imagedraw
+
+
+
+PIL.ImageDraw.Draw(im, mode=None) /////Creates an object that can be used to draw in the given image.
+
+
+
+from PIL import Image, ImageDraw, ImageFont
+# get an image
+base = Image.open('Pillow/Tests/images/hopper.png').convert('RGBA')
+
+# make a blank image for the text, initialized to transparent text color
+txt = Image.new('RGBA', base.size, (255,255,255,0))
+
+# get a font
+fnt = ImageFont.truetype('Pillow/Tests/fonts/FreeMono.ttf', 40)
+# get a drawing context
+d = ImageDraw.Draw(txt)
+
+# draw text, half opacity
+d.text((10,10), "Hello", font=fnt, fill=(255,255,255,128))
+# draw text, full opacity
+d.text((10,60), "World", font=fnt, fill=(255,255,255,255))
+
+out = Image.alpha_composite(base, txt)
+
+out.show()
+
+
+
+
+
+
+
+
+
+
+
+								imageenhancer
+
+
+
+
+enhancer = ImageEnhance.Sharpness(image)
+
+enhancer.enhance(factor)
+
+PIL.ImageEnhance.Sharpness
+
+PIL.ImageEnhance.Brightness
+PIL.ImageEnhance.Contrast
+PIL.ImageEnhance.Color(image)
+
+
+
+
+
+
+
+							image filter:
+
+
+
+	from PIL import ImageFilter
+
+im1 = im.filter(ImageFilter.BLUR)
+
+im2 = im.filter(ImageFilter.MinFilter(3))
+im3 = im.filter(ImageFilter.MinFilter)  # same as MinFilter(3)
+
+
+
+
+==>> there are pre defined filters.
+BLUR
+CONTOUR
+DETAIL
+EDGE_ENHANCE
+EDGE_ENHANCE_MORE
+EMBOSS
+FIND_EDGES
+SHARPEN
+SMOOTH
+SMOOTH_MORE
+
+
+
+
+
+
+
+								imagefont
+
+
+	from PIL import ImageFont, ImageDraw
+
+draw = ImageDraw.Draw(image)
+
+# use a bitmap font
+font = ImageFont.load("arial.pil")
+
+draw.text((10, 10), "hello", font=font)
+
+# use a truetype font
+font = ImageFont.truetype("arial.ttf", 15)
+
+draw.text((10, 25), "world", font=font)
+
+
+
+
+-->>>>>
+
+PIL.ImageFont.load(filename) ///// used for  bitmap font file,
+
+
+PIL.ImageFont.truetype(font=None, size=10, index=0, encoding='', layout_engine=None)  ////  used for Load a TrueType or OpenType font from a file 
