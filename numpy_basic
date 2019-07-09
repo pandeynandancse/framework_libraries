@@ -1,0 +1,72 @@
+
+a) np.dot()
+b) matrix.T
+c) np.exp(2)                    --->> e^2
+d) w = np.zeros(shape=(5,1))				---->> vector of row 5 and col 1
+e) isinstance(b, float)        ----->>> reutrn true if b is false
+f) assert(w.shape == (dim, 1))  ----->>> if assert function return true then go on next line of code
+g)Accessing numpy arrays : 
+					A[0,i]    ---->> array A's zero row and i th column
+ 
+
+it means : array[row,column]
+
+h) np.abs()
+
+i) get shape of vector/matrix X ===> X.shape
+								===>> (row,column)
+								===>>row  = X.shape[0]
+
+j) np.multiply()  ----->>>> element wise multiply
+k) np.sum()      ---->> sum all the elements of vector
+
+l) np.power(x,2) ----> x^2
+m) np.round()
+n) np.mean(li)
+
+o) np.divide()
+p) reversed(range(4)) ==>> 4 3 2 1 0 
+
+q)  numpy.random.randn generates samples from the normal distribution, while numpy.random.rand from unifrom (in range [0,1)).
+
+
+
+r) keepdims 
+
+
+s) Suppose img is a (32,32,3) array, representing a 32x32 image with 3 color channels red, green and blue. How do you reshape this into a column vector?
+Answer : x = img.reshape((32*32*3,1))
+
+
+t) * is element  wise multiplication operation on matrix
+
+
+u) np.square()
+
+v) np.random.permutation(5)    //// used for suffling
+
+w) math.floor()
+
+
+x) np..linalg.norm(A)    /////output the value of ||A||2 
+
+y) np.sqrt()
+
+
+z) np.random.rand()  //// output (0,1)
+----------------------------
+
+
+1) np.pad()
+
+
+2) np.max()
+
+
+
+
+
+
+
+
+
