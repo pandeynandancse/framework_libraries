@@ -1,1 +1,17 @@
-  asap
+imprt matplotlib.pyplot as plt
+
+plt.plot(costs)
+plt.ylabel('cost')
+plt.xlabel('iterations (per hundreds)')
+plt.title("Learning rate =" + str(learning_rate))
+plt.show()
+plt.imshow()
+
+
+
+
+plt.title("Model with He initialization")
+axes = plt.gca()
+axes.set_xlim([-1.5,1.5])
+axes.set_ylim([-1.5,1.5])
+
