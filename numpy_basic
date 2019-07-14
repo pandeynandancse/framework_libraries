@@ -92,4 +92,21 @@ z) np.random.rand()  //// output (0,1)
 9) np.concatenate((arr1,arr2),axis=1)
 
 
+----------------------------------
+
+
+
+
+
+
+10) np.clip(gradient,-maxValue,maxValue,grad)     ////gradient is ranged between (-maxvalue , maxvalue) and store result in grad 
+
+
+
+
+
+11)  np.random.choice( list( range(vocab_size)) , p = y.ravel() )             //////ravel means flatten
+
+12) np.random.shuffle(list)
+
 
