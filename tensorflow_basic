@@ -1,4 +1,6 @@
-Tensorflow Basic
+
+
+                                  						Tensorflow Basic
 
 
 
@@ -133,6 +135,46 @@ e) Optimize  cost :  tf.train.AdamOptimizer().minimize(cost)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 1) Finally, when you run the session, you are telling TensorFlow to execute the computation graph.
 
 2) placeholder ---<>>    pass in a number later when we run the session.
@@ -145,7 +187,7 @@ print(sess.run(2 * x, feed_dict = {x: 3}))
 sess.close()
 
 
-3) tf.matmul(..., ...)
+3) tf.matmul(X,Y,transpose_b = True)    ////////  XY^T
 
 4) tf.add(..., ...) 
 
@@ -179,7 +221,7 @@ sess.close()
 16) 
 
 
-17) tf.reduce_mean()
+17) tf.reduce_sum()
 
 18) tf.transpose()
 
@@ -244,5 +286,46 @@ where K = tf.keras.backend
 25) yolo_boxes_to_corners
 
 26) scale_boxes(boxes, image_shape)
+
+
+
+27) tf.maximum()       /////// element wise maximum
+
+28) tf.subtract()      /////// element wise  subtract
+
+29) tf.square()         /////// element wise square
+
+30) tf.add()            /////    element wise addition
+
+
+
+
+30) To retrieve dimensions from a tensor X, use: X.get_shape().as_list()
+
+
+31) tf.squared_difference(x,y)   /////////// 
+
+
+
+32) tf.reshape()
+
+
+33) tf.reduce_sum()
+
+34) tf.reduce_mean()
+
+
+
+
+
+
+
+
+
+NOTE :  WHERE reduce_ is used there whole list together or axis wise
+
+        else  element wise
+
+
 
 
