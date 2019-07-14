@@ -1,0 +1,132 @@
+
+															python function 
+
+
+
+
+-->>>   int, float, bool, str, tuple, unicode) are immutable. 
+
+
+--->>>> Objects of built-in types like (list, set, dict) are mutable.
+
+
+
+
+
+1) max(5,8)  ///// 8 
+
+2)  min()
+
+3) avg()
+
+4) sum()
+
+5) axis
+
+6) range()
+
+7) xrange()
+
+8) print()
+
+9) casting -->  int('5')
+            -->  str(5)
+            --> set(list)
+
+
+
+
+10) append()
+
+
+---->>>>  Dictionary
+
+11) dict.keys()
+
+12) dict['key']
+
+
+13) dict.values()
+
+14) dictionary can not contain duplicate keys/.
+
+
+
+14) li[index]
+
+
+15) in  ---->>> x in list/dict/set
+
+16)type()
+
+ 
+17) split()
+
+
+
+ slicing in  python 
+17) a[::2]
+ 
+18) a[::-1]   /// reverse
+
+
+19) upper()
+
+20) find()
+
+21) replace()
+
+
+
+Accessing element  in list / tuple
+
+22) li[index]  
+
+23) tuple[index]
+
+24) cloning list li1 to list li2
+
+li1  =  li1[:]
+
+
+25) len()
+
+26) set.add()
+
+27) enumerate()
+
+
+
+28) with as:
+
+
+
+Reading  files
+
+29) with open("Example1.txt","r") as file1:
+  
+    FileContent=file1.readlines()
+
+    print(FileContent)
+
+
+30) file1.readlines()      /////  read whole text file
+
+31) file1.readline()     //////  read first line of text file
+
+32) file1.read()
+
+
+
+
+Writing file 
+
+33) appending mode  in file ==>>> with open("Example.txt","a") as file1:
+
+
+
+34) with open("Example.txt","w") as writefile:
+  
+    writefile.write("This is line A\n")
+
+
