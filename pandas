@@ -6,7 +6,7 @@
 
 1) df.head()
 
-2) df.ix[1,0]     ///// second row first column
+2) df.ix[1,0]     ///// element at second row first column
 
 
 3) pd.read_csv()
